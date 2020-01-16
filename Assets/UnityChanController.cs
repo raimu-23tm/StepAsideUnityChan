@@ -110,58 +110,47 @@ public class UnityChanController : MonoBehaviour
             this.myRigidbody.AddForce(this.transform.up * this.upForce);
         }
 
-        //Unityちゃん後ろの当たり判定を移動
-        unitychan_sub.transform.position =
-            new Vector3(unitychan_sub.transform.position.x, unitychan_sub.transform.position.y, this.transform.position.z - 5);
-
     }
 
     //トリガーモードで他のオブジェクトと接触した場合の処理
     void OnTriggerEnter(Collider other)
     {
 
-        if (this.tag == "Unitychan")
+        //障害物に衝突した場合
+        if (other.gameObject.tag == "CarTag" || other.gameObject.tag == "TrafficConeTag")
         {
-
-            //障害物に衝突した場合
-            if (other.gameObject.tag == "CarTag" || other.gameObject.tag == "TrafficConeTag")
-            {
-                this.isEnd = true;
-                //stateTextにGAME OVERを表示
-                this.stateText.GetComponent<Text>().text = "GAME OVER";
-            }
-
-            //ゴール地点に到達した場合
-            if (other.gameObject.tag == "GoalTag")
-            {
-                this.isEnd = true;
-                //stateTextにGAME CLEARを表示
-                this.stateText.GetComponent<Text>().text = "CLEAR!!";
-            }
-
-            //コインに衝突した場合
-            if (other.gameObject.tag == "CoinTag")
-            {
-                // スコアを加算(追加)
-                this.score += 10;
-
-                //ScoreText獲得した点数を表示(追加)
-                this.scoreText.GetComponent<Text>().text = "Score " + this.score + "pt";
-
-                //パーティクルを再生
-                GetComponent<ParticleSystem>().Play();
-
-                //接触したコインのオブジェクトを破棄
-                Destroy(other.gameObject);
-
-            }
-
+            this.isEnd = true;
+            //stateTextにGAME OVERを表示
+            this.stateText.GetComponent<Text>().text = "GAME OVER";
         }
-        else if (this.tag == "Unitychan_sub")
+
+        //ゴール地点に到達した場合
+        if (other.gameObject.tag == "GoalTag")
         {
-            //後ろに来たオブジェクトを破棄
+            this.isEnd = true;
+            //stateTextにGAME CLEARを表示
+            this.stateText.GetComponent<Text>().text = "CLEAR!!";
+        }
+
+        //コインに衝突した場合
+        if (other.gameObject.tag == "CoinTag")
+        {
+            // スコアを加算(追加)
+            this.score += 10;
+
+            //ScoreText獲得した点数を表示(追加)
+            this.scoreText.GetComponent<Text>().text = "Score " + this.score + "pt";
+
+            //パーティクルを再生
+            GetComponent<ParticleSystem>().Play();
+
+            //接触したコインのオブジェクトを破棄
             Destroy(other.gameObject);
+
         }
+
+        //後ろに来たオブジェクトを破棄
+        Destroy(other.gameObject);
 
     }
 

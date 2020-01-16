@@ -9,7 +9,7 @@ TagManager:
   - CoinTag
   - GoalTag
   - Unitychan
-  - Unirtychan_sub
+  - Unitychan_sub
   layers:
   - Default
   - TransparentFX
