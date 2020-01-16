@@ -29,9 +29,6 @@ public class UnityChanController : MonoBehaviour
     //スコアを表示するテキスト
     private GameObject scoreText;
 
-    //Unityちゃん後ろの当たり判定
-    private GameObject unitychan_sub;
-
     //得点
     private int score = 0;
 
@@ -62,9 +59,6 @@ public class UnityChanController : MonoBehaviour
 
         //シーン中のscoreTextオブジェクトを取得
         this.scoreText = GameObject.Find("ScoreText");
-
-        //Unityちゃん後ろの当たり判定を取得
-        this.unitychan_sub = GameObject.Find("Unitychan_subcolinder");
 
     }
     void Update()
