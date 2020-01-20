@@ -31,8 +31,7 @@ public class ItemGenerator : MonoBehaviour
 
     //Unityちゃんオブジェクト
     public GameObject unityChan;
-
-
+    
 
     // Use this for initialization
     void Start()
